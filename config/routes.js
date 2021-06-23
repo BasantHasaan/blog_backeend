@@ -15,7 +15,7 @@ module.exports = function (app, express, path) {
 		res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS, PUT');
 		next();
 	});
-	app.use(express.static(path.join(__dirname, '../dist')));
+	app.use(express.static(path.join(__dirname, '../public')));
 	//Parsing Data To Json
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,7 +25,7 @@ module.exports = function (app, express, path) {
 	app.use('/api/articles', articleRoute);
 
 	app.get('*', (req, res, next) => {
-		res.sendFile(path.join(__dirname, '../dist', 'index.html'));
+		res.sendFile(path.join(__dirname, '../public', 'index.html'));
 	});
 	//ERROR Handler
 	app.use((req, res, next) => {
